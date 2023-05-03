@@ -5,9 +5,7 @@ type CardProps = {
     data: DoctorType
 }
 
-const Card = ({
-    data
-}: CardProps) => {
+const Card = ({ data }: CardProps) => {
     return (
         <>
             <Flex p='24px' gap='24px'>
@@ -16,7 +14,7 @@ const Card = ({
                 </Center>
                 <Flex w='100%' direction='column' gap='2'>
                 <Text fontWeight='700' fontSize='lg'>{data.name}</Text>
-                <Text>{data.hospital} - {data.specialization}</Text>
+                <Text>{data.hospital.name} - {data.specialization.name}</Text>
                 <div
                     dangerouslySetInnerHTML={{__html: data.about}}
                     style={{

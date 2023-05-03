@@ -1,10 +1,10 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { Box, Checkbox, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react"
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Option } from "../types";
+import { DoctorAttributeType } from "../types";
 
 type MultiSelectProps = {
-  data: Option[]
+  data: DoctorAttributeType[]
   label: string
   setFilterData: React.Dispatch<SetStateAction<string[]>>
 }
