@@ -38,8 +38,6 @@ const App = () => {
       direction='column' 
       bgColor='grey.light' 
       minH='100vh' 
-      minW='100vw' 
-      overflow='hidden'
     >
       <Box w='100%'>
         <Flex fontWeight='bold' fontSize='4xl' mb='16px'>
