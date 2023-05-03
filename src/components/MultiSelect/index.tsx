@@ -25,7 +25,7 @@ const MultiSelect = ({ data, label, setFilterData }: MultiSelectProps) => {
         <MenuButton
           px={4}
           py={2}
-          w='20%'
+          w={['100%','100%','20%']} 
           bgColor='white'
           transition='all 0.2s'
           borderRadius='md'

@@ -31,19 +31,23 @@ const App = () => {
     }
   }, [value, filterHospital, filterSpec, data])
 
-  if (loading) {
-    return <>Loading...</>
-  }
-
   return (
-    <Flex px={24} py={16} direction='column' bgColor='grey.light' minH='100vh'>
+    <Flex 
+      px={[6,6,24]} 
+      py={[8,8,16]} 
+      direction='column' 
+      bgColor='grey.light' 
+      minH='100vh' 
+      minW='100vw' 
+      overflow='hidden'
+    >
       <Box w='100%'>
         <Flex fontWeight='bold' fontSize='4xl' mb='16px'>
           <Text color='blue.darker'>Doctor</Text><Text color='green.dark'>Finder</Text>
         </Flex>
-        <Flex w='100%' gap='14px'>
+        <Flex w='100%' gap='14px' direction={['column', 'column', 'row']}>
           <Input 
-            w='20%' 
+            w={['100%','100%','20%']} 
             bgColor='white'
             placeholder='Keyword' 
             value={value} 
@@ -62,8 +66,14 @@ const App = () => {
         </Flex>
       </Box>
 
-      <Grid mt='20px' w='100%' templateColumns='repeat(2, 1fr)' gap={6}>
-        {filteredData.length ? 
+      <Grid 
+        w='100%' 
+        gap={6}
+        mt='20px' 
+        templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)']} 
+      >
+        {loading ? 'Loading...' 
+        : filteredData.length ? 
           filteredData.map((item, idx) => (
             <GridItem 
               key={idx} 
@@ -80,8 +90,7 @@ const App = () => {
               />
             </GridItem>
           ))
-        :
-          <Text>No data found</Text>
+        : <Text>No data found</Text>
         }
       </Grid>
     </Flex>
