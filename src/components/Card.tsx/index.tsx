@@ -8,13 +8,13 @@ type CardProps = {
 const Card = ({ data }: CardProps) => {
     return (
         <>
-            <Flex p='24px' gap='24px'>
+            <Flex p='32px 32px 12px 24px' gap='24px'>
                 <Center>
                     <Avatar name={data.name} src={data.imgUrl} w='200px' h='200px'/>
                 </Center>
                 <Flex w='100%' direction='column' gap='2'>
-                <Text fontWeight='700' fontSize='lg'>{data.name}</Text>
-                <Text>{data.hospital.name} - {data.specialization.name}</Text>
+                <Text fontWeight='bold' fontSize='lg' color='blue.darker'>{data.name}</Text>
+                <Text color='blue.dark'>{data.hospital.name} - {data.specialization.name}</Text>
                 <div
                     dangerouslySetInnerHTML={{__html: data.about}}
                     style={{
@@ -23,7 +23,15 @@ const Card = ({ data }: CardProps) => {
                     />
                 </Flex>
             </Flex>
-            <Text p='0 24px 24px' fontWeight='bold' fontSize='lg' textAlign='right'>{data.price}</Text>
+            <Text 
+                p='0 24px 24px' 
+                fontWeight='bold' 
+                fontSize='xl' 
+                textAlign='right'
+                color='green.dark'
+            >
+                {data.price}
+            </Text>
         </>
     )
 }

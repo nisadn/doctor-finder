@@ -26,11 +26,12 @@ const MultiSelect = ({ data, label, setFilterData }: MultiSelectProps) => {
           px={4}
           py={2}
           w='20%'
+          bgColor='white'
           transition='all 0.2s'
           borderRadius='md'
           borderWidth='1px'
-          _hover={{ bg: 'gray.400' }}
-          _expanded={{ bg: 'blue.400' }}
+          _hover={{ bg: 'blue.mid' }}
+          _expanded={{ bg: 'blue.light' }}
           _focus={{ boxShadow: 'outline' }}
         >
           <Flex justifyContent={'space-between'}>
@@ -41,8 +42,8 @@ const MultiSelect = ({ data, label, setFilterData }: MultiSelectProps) => {
           </Flex>
         </MenuButton>
         <MenuList w='100%'>
-          {data.map((option, index) => (
-            <MenuItem w='100%'>
+          {data.map((option: DoctorAttributeType, index: number) => (
+            <MenuItem w='100%' key={index}>
               <Checkbox
                 key={option.id}
                 isChecked={checkedItems[index]}

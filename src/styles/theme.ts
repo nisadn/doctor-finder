@@ -12,9 +12,22 @@ const shadows = {
 }
 
 const colors = {
-  random: {
-    '100': '#e2e2e2'
-  }
+  blue: {
+    darker: '#003057',
+    dark: '#3F8DBA',
+    mid: '#128EBF',
+    light: '#72CEED',
+    lighter: '#D1ECF9',
+  },
+  green: {
+    dark: '#43BEAE',
+    mid: '#32DAC3',
+    light: '#61C7B5',
+  },
+  grey: {
+    dark: '#535556',
+    light: '#EAF0F3',
+  },
 }
 
 // 2. Call `extendTheme` and pass your custom values

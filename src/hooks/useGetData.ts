@@ -5,6 +5,7 @@ const useGetData = () => {
     const [data, setData] = useState<DoctorType[]>([])
     const [hospitalOptions, setHospitalOptions] = useState<DoctorAttributeType[]>([])
     const [specOptions, setSpecOptions] = useState<DoctorAttributeType[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
         fetch(`https://run.mocky.io/v3/c9a2b598-9c93-4999-bd04-0194839ef2dc`)
@@ -22,6 +23,7 @@ const useGetData = () => {
                     }
                 })
                 setData(tempData)
+                setLoading(false)
             })
             .catch((err) => {
                 console.log(err.message)
@@ -29,16 +31,27 @@ const useGetData = () => {
         }, [])
 
     useEffect(() => {
+        setLoading(true)
         if (data) {
-            setHospitalOptions(data.map(item => item.hospital))
-            setSpecOptions(data.map(item => item.specialization))
+            const tempHospital = data.map(item => item.hospital)
+            const tempHospitalName = data.map(item => item.hospital.name)
+            setHospitalOptions(tempHospital.filter((item, index) => {
+                return tempHospitalName.indexOf(item.name) === index
+            }))
+            const tempSpec = data.map(item => item.specialization)
+            const tempSpecName = data.map(item => item.specialization.name)
+            setSpecOptions(tempSpec.filter((item, index) => {
+                return tempSpecName.indexOf(item.name) === index
+            }))
         }
+        setLoading(false)
     }, [data])
 
     return {
         data,
         hospitalOptions,
         specOptions,
+        loading
     }
 }
 
