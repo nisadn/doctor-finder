@@ -2,9 +2,6 @@ This project was built using React with Typescript.
 
 ## Manually Run in Local
 
-
-## Manually Run in Local
-
 ```bash
 yarn install
 
