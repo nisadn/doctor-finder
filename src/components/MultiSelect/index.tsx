@@ -1,33 +1,27 @@
+import { SetStateAction, useEffect, useState } from 'react';
 import { Box, Checkbox, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react"
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
+import { Option } from "../types";
 
-const data = {
-    users: [
-      { id: "user-1", name: "User 1" },
-      { id: "user-2", name: "User 2" },
-      { id: "user-3", name: "User 3" },
-      { id: "user-4", name: "User 4" },
-      { id: "user-5", name: "User 5" },
-      { id: "user-6", name: "User 6" },
-      { id: "user-7", name: "User 7" },
-      { id: "user-8", name: "User 8" }
-    ]
-  };
+type MultiSelectProps = {
+  data: Option[]
+  label: string
+  setFilterData: React.Dispatch<SetStateAction<string[]>>
+}
 
-const MultiSelect = () => {
+const MultiSelect = ({ data, label, setFilterData }: MultiSelectProps) => {
 
   const [checkedItems, setCheckedItems] = useState(
-    data.users.map(() => false)
+    data.map(() => false)
   );
 
-//   useEffect(() => {
-//     console.log(checkedItems)
-//   }, [checkedItems])
+  useEffect(() => {
+    setFilterData(data.filter((item) => 
+      checkedItems[data.indexOf(item)] === true).map(obj => obj.name))
+  }, [checkedItems, data, setFilterData])
 
     return (
-        
-        <Menu>
+      <Menu>
         <MenuButton
           px={4}
           py={2}
@@ -40,17 +34,17 @@ const MultiSelect = () => {
           _focus={{ boxShadow: 'outline' }}
         >
           <Flex justifyContent={'space-between'}>
-            <Text>File</Text>
+            <Text>{label}</Text>
             <Box>
                 <ChevronDownIcon />
             </Box>
           </Flex>
         </MenuButton>
         <MenuList w='100%'>
-          {data.users.map((user, index) => (
+          {data.map((option, index) => (
             <MenuItem w='100%'>
               <Checkbox
-                key={user.id}
+                key={option.id}
                 isChecked={checkedItems[index]}
                 onChange={(e) =>
                   setCheckedItems([
@@ -60,7 +54,7 @@ const MultiSelect = () => {
                   ])
                 }
               >
-                {user.name}
+                {option.name}
             </Checkbox>
             </MenuItem>
           ))}
